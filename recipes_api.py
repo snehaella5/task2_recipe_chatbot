@@ -72,4 +72,5 @@ def suggest(query: Query):
     return {"best_match": best, "ranked_matches": results_sorted}
 
 
-app.mount("/", StaticFiles(directory=".", html=True), name="static")
+app.mount("/ui", StaticFiles(directory=".", html=True), name="static")
+
