@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Egg & Onion Masala",
+    "ingredients": ["egg","onion","salt","turmeric","oil","chili","garlic"],
+    "instructions": "Beat eggs. Fry sliced onions with garlic and spices. Add beaten eggs and scramble till cooked. Serve hot with rice or roti."
+  },
+  {
+    "id": 2,
+    "title": "Onion Omelette",
+    "ingredients": ["egg","onion","salt","pepper","oil"],
+    "instructions": "Chop onions. Beat eggs with salt and pepper. Fry onions then add egg mix and cook both sides."
+  },
+  {
+    "id": 3,
+    "title": "Paneer Bhurji",
+    "ingredients": ["paneer","onion","tomato","turmeric","chili","oil","salt"],
+    "instructions": "Crumble paneer. Saute onion and tomato, add spices and paneer. Cook 2-3 mins. Serve with roti."
+  },
+  {
+    "id": 4,
+    "title": "Potato Fry",
+    "ingredients": ["potato","onion","salt","oil","turmeric"],
+    "instructions": "Slice potatoes & onions. Fry till crisp, season and serve."
+  },
+  {
+    "id": 5,
+    "title": "Scrambled Eggs with Tomato",
+    "ingredients": ["egg","tomato","onion","salt","butter"],
+    "instructions": "Saute tomato & onion in butter. Add beaten eggs and scramble. Serve warm."
+  },
+  {
+    "id": 6,
+    "title": "Simple Fried Egg",
+    "ingredients": ["egg","salt","pepper","oil"],
+    "instructions": "Heat oil, crack egg, cook till set. Season and serve."
+  }
+]
