@@ -7,18 +7,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from rapidfuzz import fuzz
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI(title="Local Recipe Suggestion API")
 
-# ---- CORS FIX ----
+#  CORS FIX 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],     # Allow everything
+    allow_origins=["*"],     
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# ------------------
+
 
 # Load recipes
 with open("recipes.json", "r", encoding="utf-8") as f:
@@ -32,9 +33,11 @@ def score_recipe(recipe_ings, query_ings):
     rset = set(i.lower() for i in recipe_ings)
     matched = qset & rset
 
+    # Overlap scoring (70%)
     overlap_ratio = len(matched) / max(1, len(qset))
     overlap_score = overlap_ratio * 70
 
+    # Fuzzy scoring (30%)
     fuzzy_scores = []
     for qi in qset:
         best = 0
@@ -42,7 +45,7 @@ def score_recipe(recipe_ings, query_ings):
             s = fuzz.WRatio(qi, ri)
             if s > best:
                 best = s
-        fuzzy_scores.append(best/100.0)
+        fuzzy_scores.append(best / 100.0)
 
     fuzzy_avg = sum(fuzzy_scores) / len(fuzzy_scores) if fuzzy_scores else 0
     fuzzy_score = fuzzy_avg * 30
@@ -68,6 +71,5 @@ def suggest(query: Query):
     best = results_sorted[0] if results_sorted else None
     return {"best_match": best, "ranked_matches": results_sorted}
 
-@app.get("/")
-def home():
-    return {"message": "Recipe Suggestion API is running. Use POST /suggest"}
+
+app.mount("/", StaticFiles(directory=".", html=True), name="static")
